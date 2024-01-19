@@ -17,13 +17,14 @@ module.exports = {
   },
   devServer: {
     static: './dist',
-    hot: true,
+    hot: 'only',
     liveReload: false,
     port: 8082,
   },
   plugins: [
     new HtmlWebpackPlugin({
      title: 'Development',
+     template:"./public/index.html"
     }),
   ],
   module: {
@@ -38,6 +39,11 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      {
+        test:/\.js$/,
+        exclude:/node_modules/,
+        loader:"babel-loader" 
+      }
     ],
   },
 };

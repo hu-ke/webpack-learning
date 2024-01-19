@@ -1,23 +1,22 @@
-// import _ from 'lodash';
-import printMe from './print.js';
-import './style.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-function component() {
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
-
-  // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.innerHTML = 'Hello WP'
-  element.classList.add('hello');
-
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
-
-  return element;
+if (module.hot) {
+  module.hot.accept('./App.js', () => {
+    console.log('hot..')
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+  })
 }
-
-
- document.body.appendChild(component());
