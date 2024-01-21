@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { event } from '@ice/stark-data';
 
 const rootEle = document.getElementById('root')
 let root = null
