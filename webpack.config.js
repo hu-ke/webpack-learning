@@ -10,16 +10,27 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true
+    clean: true,
+    // 设置模块导出规范为 umd
+    libraryTarget: 'umd',
+    // 可选，设置模块在 window 上暴露的名称
+    library: 'microApp',
+    publicPath: 'http://localhost:8080/'
   },
   optimization: {
     runtimeChunk: 'single',
   },
   devServer: {
-    static: './dist',
     hot: 'only',
-    liveReload: false,
-    port: 8082,
+    liveReload: true,
+    port: 8080,
+    // allowedHosts: 'auto',
+    // host: '0.0.0.0',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-with, content-type, Authorization'
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
