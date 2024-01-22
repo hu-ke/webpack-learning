@@ -2,15 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: {
-      import: './src/index.js',
-      dependOn: 'shared'
-    },
-    another: {
-      import: './src/another-module.js',
-      dependOn: 'shared'
-    },
-    shared: 'lodash'
+    index: './src/index.js',
+    another: './src/another-module.js'
   },
   mode: 'development',
   output: {
@@ -19,6 +12,9 @@ module.exports = {
     clean: true
   },
   optimization: {
-    runtimeChunk: 'single', // 思考一下，注释和启用这一行有什么区别？
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all'
+    }
   },
 };
