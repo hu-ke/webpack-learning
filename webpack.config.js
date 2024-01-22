@@ -8,28 +8,20 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    // 设置模块导出规范为 umd
-    libraryTarget: 'umd',
-    // 可选，设置模块在 window 上暴露的名称
-    library: 'microApp',
-    publicPath: 'http://localhost:8080/'
   },
   optimization: {
     runtimeChunk: 'single',
-  },
-  devServer: {
-    hot: 'only',
-    liveReload: true,
-    port: 8080,
-    // allowedHosts: 'auto',
-    // host: '0.0.0.0',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers': 'X-Requested-with, content-type, Authorization'
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
   },
   plugins: [

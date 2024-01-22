@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Modal } from 'antd'
+import Print from './print';
 
 export default function Button() {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -12,7 +13,9 @@ export default function Button() {
             >
                 添加全局弹框
             </button>
-            <Modal title="Basic Modal" open={isModalOpen} onOk={() => {}} onCancel={() => {
+            <Modal title="Basic Modal" open={isModalOpen} onOk={() => {
+                Print()
+            }} onCancel={() => {
                 setIsModalOpen(false)
             }}>
                 <p>Some contents...</p>
