@@ -1,19 +1,16 @@
-import _ from 'lodash';
 
 
-function component() {
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
-
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
-
-  btn.innerHTML = 'Click me and check the console!';
-
-  element.appendChild(btn);
-
-  return element;
+function getComponent() {
+  return import('lodash')
+    .then(({default: _}) => {
+      const element = document.createElement('div')
+      element.innerHTML = _.join(['hello', 'webpack'], ' ')
+      return element
+    })
+    .catch(error => 'An error occurred while loading the component');
 }
 
 
- document.body.appendChild(component());
+getComponent().then(component => {
+  document.body.appendChild(component)
+})
