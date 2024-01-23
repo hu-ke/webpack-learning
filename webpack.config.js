@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   entry: {
@@ -32,11 +34,28 @@ module.exports = {
       'Access-Control-Allow-Headers': 'X-Requested-with, content-type, Authorization'
     },
   },
+  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
      title: 'Development',
      template:"./public/index.html"
     }),
+    // new webpack.ProgressPlugin({
+    //   activeModules: false,
+    //   entries: true,
+    //   handler(percentage, message, ...args) {
+    //     // custom logic
+    //     console.log('message, ...args>', (new Date()).getMilliseconds(), message, ...args)
+    //   },
+    //   modules: true,
+    //   modulesCount: 5000,
+    //   profile: false,
+    //   dependencies: true,
+    //   dependenciesCount: 10000,
+    //   percentBy: null,
+    // }),
+    new BundleAnalyzerPlugin({
+    })
   ],
   module: {
     rules: [
