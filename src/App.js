@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react' // 为什么要加上？
 import Button from './Button'
+import Panel from './Panel'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +28,7 @@ function App() {
           Learn React
         </a>
         <Button />
+        <Panel />
       </header>
     </div>
   );
