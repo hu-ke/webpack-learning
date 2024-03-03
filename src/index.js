@@ -11,6 +11,13 @@ function getComponent() {
 }
 
 
-getComponent().then(component => {
-  document.body.appendChild(component)
+
+
+const element = document.createElement('div')
+element.innerHTML = 'hello~'
+document.body.appendChild(element)
+element.addEventListener('click', () => {
+  getComponent().then(component => {
+    document.body.appendChild(component)
+  })
 })
