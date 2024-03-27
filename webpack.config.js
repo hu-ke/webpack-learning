@@ -8,6 +8,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true
+    clean: true,
   },
+  devtool: "cheap-module-source-map", // 解决eval问题
 };
