@@ -17,7 +17,7 @@ module.exports = {
     // 可选，设置模块在 window 上暴露的名称
     library: 'microApp',
     publicPath: '/',
-    assetModuleFilename: 'images/[hash][ext][query]'
+    assetModuleFilename: 'assets/[hash][ext][query]'
   },
   optimization: {
     runtimeChunk: 'single',
