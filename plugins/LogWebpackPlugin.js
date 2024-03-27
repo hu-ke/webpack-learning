@@ -1,12 +1,30 @@
+// const globby = require("globby");
 class LogWebpackPlugin {
-    constructor(doneCallback, emitCallback) {
+    constructor(emitCallback, doneCallback) {
         this.doneCallback = doneCallback
         this.emitCallback = emitCallback
     }
     apply(compiler) {
-        compiler.hooks.afterEmit.tap('LogWebpackPlugin', (compilation, callback) => {
-            console.log('afterEmit')
-        })
+        // compiler.hooks.afterEmit.tap('LogWebpackPlugin', (compilation, callback) => {
+        //     console.log('afterEmit')
+        // })
+        compiler.hooks.afterEmit.tapPromise('LogWebpackPlugin', async(compilation) => {
+          let newPromise = new Promise((resolve, reject) => {
+              setTimeout(function () {
+                console.log('Done with async work...');
+                resolve();
+              }, 1000);
+            });
+          
+            return await newPromise
+            // return a Promise that resolves when we are done...
+            // return new Promise((resolve, reject) => {
+            //   setTimeout(function () {
+            //     console.log('Done with async work...');
+            //     resolve();
+            //   }, 1000);
+            // });
+          });
         compiler.hooks.emit.tap('LogWebpackPlugin', () => {
             this.emitCallback()
         })

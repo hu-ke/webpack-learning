@@ -16,7 +16,8 @@ module.exports = {
     libraryTarget: 'umd',
     // 可选，设置模块在 window 上暴露的名称
     library: 'microApp',
-    publicPath: '/'
+    publicPath: '/',
+    assetModuleFilename: 'images/[hash][ext][query]'
   },
   optimization: {
     runtimeChunk: 'single',
@@ -39,9 +40,9 @@ module.exports = {
      template:"./public/index.html"
     }),
     new LogWebpackPlugin(() => {
-      console.log('5.emit事件发生了，所有模块和代码对应的文件已经生成好')
+      console.log('4.emit事件发生了，所有模块和代码对应的文件已经生成好')
     }, () => {
-      console.log('4.done事件发生了，成功构建完成')
+      console.log('5.done事件发生了，成功构建完成')
     }),
     new webpack.DefinePlugin({
       // Definitions...
