@@ -1,10 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const LogWebpackPlugin = require('./plugins/LogWebpackPlugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
     index: './src/index.js',
-    // print: './src/print.js',
   },
   mode: 'development',
   output: {
@@ -15,7 +16,7 @@ module.exports = {
     libraryTarget: 'umd',
     // 可选，设置模块在 window 上暴露的名称
     library: 'microApp',
-    publicPath: 'http://localhost:8080/'
+    publicPath: '/'
   },
   optimization: {
     runtimeChunk: 'single',
@@ -37,6 +38,15 @@ module.exports = {
      title: 'Development',
      template:"./public/index.html"
     }),
+    new LogWebpackPlugin(() => {
+      console.log('5.emit事件发生了，所有模块和代码对应的文件已经生成好')
+    }, () => {
+      console.log('4.done事件发生了，成功构建完成')
+    }),
+    new webpack.DefinePlugin({
+      // Definitions...
+      ENV: JSON.stringify(process.env.NODE_ENV === 'dev' ? 'this is dev' : 'this is production')
+    })
   ],
   module: {
     rules: [
